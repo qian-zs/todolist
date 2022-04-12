@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 
 import MyHeader from './components/Header';
 import AddInput from './components/AddInput';
 
 function App() {
-
   const [isInputShow, setInputShow] = useState(false);
+  const [todoList, setTodoList] = useState([]);
 
-  const addItem = (value) => {
-    console.log(value);
-  }
+  const addItem = useCallback((value) => {
+    const dataItem = {
+      id: new Date().getTime(),
+      content: value,
+      completed: false,
+    };
+
+    setTodoList((todoList) => [...todoList, dataItem]);
+    setInputShow(false);
+  }, []);
 
   return (
     <div className="App">

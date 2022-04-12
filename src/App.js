@@ -8,10 +8,14 @@ function App() {
 
   const [isInputShow, setInputShow] = useState(false);
 
+  const addItem = (value) => {
+    console.log(value);
+  }
+
   return (
     <div className="App">
       <MyHeader openInput={() => setInputShow(!isInputShow)} />
-      <AddInput isInputShow={isInputShow} />
+      <AddInput isInputShow={isInputShow} addItem={addItem} />
     </div>
   );
 }

@@ -4,6 +4,8 @@ import './index.scss';
 
 import Modal from "../";
 
+import { formatDateTime } from '../../../utils/index';
+
 function EditModal(props) {
   const inputRef = useRef();
   const checkboxRef = useRef();
@@ -30,7 +32,7 @@ function EditModal(props) {
 
   return (
     <Modal isShowModal={isShowEditModal} modalTitle="编辑事件">
-      <p className="topic">时间：{data.id}</p>
+      <p className="topic">时间：{formatDateTime(data.id)}</p>
       <p className="topic">
         <textarea className="text-area" ref={inputRef} defaultValue={data.content}></textarea>
       </p>

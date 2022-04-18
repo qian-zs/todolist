@@ -2,11 +2,11 @@ import React from "react";
 import './index.scss';
 
 function TodoItem(props) {
-  const { data, openCheckModal, openEditModal } = props;
+  const { data, openCheckModal, openEditModal, completeItem } = props;
   return (
     <li className="todo-item">
       <div className="check-box">
-        <input type="checkbox" checked={data.completed} />
+        <input type="checkbox" checked={data.completed} onChange={() => completeItem(data.id)} />
       </div>
       <span className="content" style={{ 'textDecoration': data.completed ? 'line-through' : 'none' }}>
         {data.content}

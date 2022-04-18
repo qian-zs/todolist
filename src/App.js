@@ -34,6 +34,15 @@ function App() {
     setInputShow(false);
   }, []);
 
+  const completeItem = useCallback((id) => {
+    setTodoList((todoList) => todoList.map(item => {
+      if (item.id === id) {
+        item.completed = !item.completed;
+      }
+      return item;
+    }))
+  }, []);
+
   const openCheckModal = useCallback((id) => {
     _setCurrentData(todoList, id);
     setShowCheckModal(true);
@@ -70,7 +79,7 @@ function App() {
         {
           todoList.map((item, index) => {
             return (
-              <TodoItem data={item} key={index} openCheckModal={openCheckModal} openEditModal={openEditModal} />
+              <TodoItem data={item} key={index} openCheckModal={openCheckModal} openEditModal={openEditModal} completeItem={completeItem} />
             )
           })
         }

@@ -6,6 +6,7 @@ import AddInput from './components/AddInput';
 import TodoItem from './components/TodoItem';
 import CheckModal from './components/Modal/CheckModal';
 import EditModal from './components/Modal/EditModal';
+import NoDataTip from './components/NoDataTip';
 
 function App() {
   const [isInputShow, setInputShow] = useState(false);
@@ -79,15 +80,19 @@ function App() {
       <EditModal isShowEditModal={isShowEditModal} data={currentData} submitEdit={submitEdit} />
       <MyHeader openInput={() => setInputShow(!isInputShow)} />
       <AddInput isInputShow={isInputShow} addItem={addItem} />
-      <ul className='todo-list'>
-        {
-          todoList.map((item, index) => {
-            return (
-              <TodoItem data={item} key={index} openCheckModal={openCheckModal} openEditModal={openEditModal} completeItem={completeItem} removeItem={removeItem} />
-            )
-          })
-        }
-      </ul>
+      {
+        !todoList || todoList.length === 0 ? (<NoDataTip />) : (
+          <ul className='todo-list'>
+            {
+              todoList.map((item, index) => {
+                return (
+                  <TodoItem data={item} key={index} openCheckModal={openCheckModal} openEditModal={openEditModal} completeItem={completeItem} removeItem={removeItem} />
+                )
+              })
+            }
+          </ul>
+        )
+      }
     </div>
   );
 }

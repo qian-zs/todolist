@@ -43,6 +43,10 @@ function App() {
     }))
   }, []);
 
+  const removeItem = useCallback((id) => {
+    setTodoList((todoList) => todoList.filter(item => item.id !== id));
+  }, []);
+
   const openCheckModal = useCallback((id) => {
     _setCurrentData(todoList, id);
     setShowCheckModal(true);
@@ -79,7 +83,7 @@ function App() {
         {
           todoList.map((item, index) => {
             return (
-              <TodoItem data={item} key={index} openCheckModal={openCheckModal} openEditModal={openEditModal} completeItem={completeItem} />
+              <TodoItem data={item} key={index} openCheckModal={openCheckModal} openEditModal={openEditModal} completeItem={completeItem} removeItem={removeItem} />
             )
           })
         }

@@ -2,7 +2,13 @@ import React from "react";
 import './index.scss';
 
 function TodoItem(props) {
-  const { data, openCheckModal, openEditModal, completeItem } = props;
+  const {
+    data,
+    openCheckModal,
+    openEditModal,
+    completeItem,
+    removeItem,
+  } = props;
   return (
     <li className="todo-item">
       <div className="check-box">
@@ -12,9 +18,9 @@ function TodoItem(props) {
         {data.content}
       </span>
       <div className="btn-group">
-        <button className="btn btn-primary" onClick={() => { openCheckModal(data.id) }}>查看</button>
+        <button className="btn btn-primary" onClick={() => openCheckModal(data.id)}>查看</button>
         <button className="btn btn-warning" onClick={() => openEditModal(data.id)}>编辑</button>
-        <button className="btn btn-danger">删除</button>
+        <button className="btn btn-danger" onClick={() => removeItem(data.id)}>删除</button>
       </div>
     </li>
   );
